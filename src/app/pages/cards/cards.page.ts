@@ -1,4 +1,4 @@
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TuiIcon } from '@taiga-ui/core';
 import { SessionStore } from '../../core/session.store';
@@ -11,6 +11,7 @@ import { SkeletonListComponent } from '../../shared/skeleton-list.component';
 @Component({
   selector: 'app-cards-page',
   imports: [
+    CurrencyPipe,
     DatePipe,
     DecimalPipe,
     TuiIcon,
@@ -33,15 +34,15 @@ import { SkeletonListComponent } from '../../shared/skeleton-list.component';
           @for (card of cards(); track card.id) {
             <li class="card app-card" [attr.data-unit]="card.unit">
               <div class="card-head">
-                <tui-icon [icon]="card.unit === 'rub' ? '@tui.gift' : '@tui.wallet'" />
+                <tui-icon [icon]="card.unit === 'usd' ? '@tui.gift' : '@tui.wallet'" />
                 <span class="card-title">{{ card.title }}</span>
                 <span class="card-number">{{ card.number }}</span>
               </div>
               <p class="balance">
-                {{ card.balance | number: '1.0-0' }}
-                @if (card.unit === 'rub') {
-                  ₽
+                @if (card.unit === 'usd') {
+                  {{ card.balance | currency: 'USD' : 'symbol' : '1.0-0' }}
                 } @else {
+                  {{ card.balance | number: '1.0-0' }}
                   {{ card.balance | plural: 'bonus' : 'bonuses' }}
                 }
               </p>
@@ -76,7 +77,7 @@ import { SkeletonListComponent } from '../../shared/skeleton-list.component';
       color: #fff;
       background: linear-gradient(135deg, #7b5cd6, #c25ea5);
 
-      &[data-unit='rub'] {
+      &[data-unit='usd'] {
         background: linear-gradient(135deg, #2f8f83, #4cb0c9);
       }
     }

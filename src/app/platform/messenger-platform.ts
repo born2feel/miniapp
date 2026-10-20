@@ -71,11 +71,12 @@ export function isValidUsername(username: string): boolean {
   return /^[A-Za-z0-9_]{5,32}$/.test(username);
 }
 
-/** Normalizes a number to +7XXXXXXXXXX (messengers return it in different formats). */
+/** Normalizes a number to E.164 (messengers return it with or without "+", spaces, etc.). */
 export function normalizePhone(raw: string): string {
   const digits = raw.replace(/\D/g, '');
-  if (digits.length === 11 && digits.startsWith('8')) {
-    return `+7${digits.slice(1)}`;
+  // A bare 10-digit North American number gets the +1 country code.
+  if (digits.length === 10) {
+    return `+1${digits}`;
   }
   return `+${digits}`;
 }

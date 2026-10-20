@@ -4,7 +4,7 @@
  */
 
 export interface ProfileRequest {
-  /** Number in +7XXXXXXXXXX format. */
+  /** Number in E.164 format, e.g. +15550100001. */
   phone: string;
 }
 
@@ -25,7 +25,7 @@ export interface ClubStatus {
   /** Level name for the UI: "Silver", "Gold"… */
   levelName: string;
   discountPercent: number;
-  /** Total spent on visits, ₽, counted towards the next level. */
+  /** Total spent on visits, USD, counted towards the next level. */
   spent: number;
   /** `null` means the client is at the top level. */
   nextLevel: { name: string; threshold: number; discountPercent: number } | null;
@@ -51,7 +51,7 @@ export interface BonusCard {
   /** Masked card number. */
   number: string;
   balance: number;
-  unit: 'bonus' | 'rub';
+  unit: 'bonus' | 'usd';
   /** ISO date when the balance expires, if any. */
   expiresAt: string | null;
 }
@@ -98,7 +98,7 @@ export interface Subscription {
   price: number;
   discountPrice: number;
   paid: number;
-  /** Amount left to pay, ₽. */
+  /** Amount left to pay, USD. */
   toPay: number;
   frozen: boolean;
   validUntil: string;

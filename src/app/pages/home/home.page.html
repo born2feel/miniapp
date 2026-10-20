@@ -32,7 +32,7 @@
               [attr.aria-label]="'Progress to ' + next.name"
             ></progress>
             <p class="app-muted">
-              {{ toNextLevel() | number: '1.0-0' }}&nbsp;₽ left to reach {{ next.name }}
+              {{ toNextLevel() | currency: 'USD' : 'symbol' : '1.0-0' }} left to reach {{ next.name }}
               ({{ next.discountPercent }}%)
             </p>
           } @else {

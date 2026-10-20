@@ -22,11 +22,11 @@ const MASTERS = {
 } satisfies Record<string, Master>;
 
 const PROCEDURES: { category: string; services: string[]; master: Master; price: number }[] = [
-  { category: 'Hair', services: ['Haircut', 'Styling'], master: MASTERS.olga, price: 3800 },
-  { category: 'Nails', services: ['Gel manicure'], master: MASTERS.irina, price: 2600 },
-  { category: 'Skincare', services: ['Facial cleansing', 'Alginate mask'], master: MASTERS.daria, price: 5200 },
-  { category: 'Brows & lashes', services: ['Brow shaping and tinting'], master: MASTERS.elena, price: 1900 },
-  { category: 'Hair', services: ['AirTouch coloring'], master: MASTERS.olga, price: 12500 },
+  { category: 'Hair', services: ['Haircut', 'Styling'], master: MASTERS.olga, price: 65 },
+  { category: 'Nails', services: ['Gel manicure'], master: MASTERS.irina, price: 45 },
+  { category: 'Skincare', services: ['Facial cleansing', 'Alginate mask'], master: MASTERS.daria, price: 120 },
+  { category: 'Brows & lashes', services: ['Brow shaping and tinting'], master: MASTERS.elena, price: 35 },
+  { category: 'Hair', services: ['AirTouch coloring'], master: MASTERS.olga, price: 250 },
 ];
 
 interface VisitSeed {
@@ -69,19 +69,19 @@ const goldClient: ClientProfileResponse = {
     id: 10421,
     firstName: 'Anna',
     lastName: 'Sokolova',
-    phone: '+79990000001',
+    phone: '+15550100001',
     club: {
       level: 'gold',
       levelName: 'Gold',
       discountPercent: 10,
-      spent: 112_400,
-      nextLevel: { name: 'Platinum', threshold: 150_000, discountPercent: 15 },
+      spent: 2_240,
+      nextLevel: { name: 'Platinum', threshold: 3_000, discountPercent: 15 },
     },
     referral: { invitedCount: 4, bonusesEarned: 2000 },
   },
   cards: [
     { id: 1, title: 'Club bonus card', number: '•••• 4821', balance: 2340, unit: 'bonus', expiresAt: null },
-    { id: 2, title: 'Gift certificate', number: '•••• 0917', balance: 5000, unit: 'rub', expiresAt: dateFromNow(64, 0) },
+    { id: 2, title: 'Gift certificate', number: '•••• 0917', balance: 100, unit: 'usd', expiresAt: dateFromNow(64, 0) },
     { id: 3, title: 'Review bonuses', number: '•••• 3305', balance: 300, unit: 'bonus', expiresAt: dateFromNow(20, 0) },
   ],
   visits: buildVisits(5001, [
@@ -110,10 +110,10 @@ const goldClient: ClientProfileResponse = {
     {
       id: 301,
       title: 'Radiant Skin package',
-      price: 36_000,
-      discountPrice: 30_600,
-      paid: 20_000,
-      toPay: 10_600,
+      price: 720,
+      discountPrice: 612,
+      paid: 400,
+      toPay: 212,
       frozen: false,
       validUntil: dateFromNow(120, 0),
       services: [
@@ -125,9 +125,9 @@ const goldClient: ClientProfileResponse = {
     {
       id: 302,
       title: 'Six-month manicure package',
-      price: 15_600,
-      discountPrice: 13_200,
-      paid: 13_200,
+      price: 270,
+      discountPrice: 230,
+      paid: 230,
       toPay: 0,
       frozen: true,
       validUntil: dateFromNow(75, 0),
@@ -145,13 +145,13 @@ const silverClient: ClientProfileResponse = {
     id: 11873,
     firstName: 'Maria',
     lastName: 'Lebedeva',
-    phone: '+79990000002',
+    phone: '+15550100002',
     club: {
       level: 'silver',
       levelName: 'Silver',
       discountPercent: 5,
-      spent: 18_600,
-      nextLevel: { name: 'Gold', threshold: 50_000, discountPercent: 10 },
+      spent: 420,
+      nextLevel: { name: 'Gold', threshold: 1_000, discountPercent: 10 },
     },
     referral: { invitedCount: 0, bonusesEarned: 0 },
   },
@@ -176,7 +176,7 @@ export const MOCK_PROFILES: Record<string, ClientProfileResponse> = {
 };
 
 /** Number for the error demo: the first request fails, a retry returns Anna's profile. */
-export const DEMO_ERROR_PHONE = '+79990000000';
+export const DEMO_ERROR_PHONE = '+15550100000';
 MOCK_PROFILES[DEMO_ERROR_PHONE] = goldClient;
 
 export const DEMO_PHONES: { phone: string; title: string }[] = [

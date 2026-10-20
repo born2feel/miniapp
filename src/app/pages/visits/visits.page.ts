@@ -1,4 +1,4 @@
-﻿import { DatePipe, DecimalPipe } from '@angular/common';
+﻿import { CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TuiButton } from '@taiga-ui/core';
@@ -16,8 +16,8 @@ const PAGE_SIZE = 5;
 @Component({
   selector: 'app-visits-page',
   imports: [
+    CurrencyPipe,
     DatePipe,
-    DecimalPipe,
     FormsModule,
     TuiBadge,
     TuiButton,

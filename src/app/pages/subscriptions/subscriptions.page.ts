@@ -1,4 +1,4 @@
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TuiIcon } from '@taiga-ui/core';
 import { TuiBadge, TuiProgress } from '@taiga-ui/kit';
@@ -11,8 +11,8 @@ import { SkeletonListComponent } from '../../shared/skeleton-list.component';
 @Component({
   selector: 'app-subscriptions-page',
   imports: [
+    CurrencyPipe,
     DatePipe,
-    DecimalPipe,
     TuiBadge,
     TuiIcon,
     TuiProgress,

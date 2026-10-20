@@ -16,7 +16,7 @@
               @if (visit.status === 'cancelled') {
                 <span tuiBadge appearance="neutral" size="s">Cancelled</span>
               } @else {
-                <span class="price">{{ visit.price | number: '1.0-0' }}&nbsp;₽</span>
+                <span class="price">{{ visit.price | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
               }
             </div>
             <p class="category">{{ visit.category }}</p>

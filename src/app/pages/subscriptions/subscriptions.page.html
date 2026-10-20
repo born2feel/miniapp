@@ -19,17 +19,17 @@
           </div>
 
           <p class="price">
-            <span class="price-discount">{{ sub.discountPrice | number: '1.0-0' }}&nbsp;₽</span>
+            <span class="price-discount">{{ sub.discountPrice | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
             @if (sub.discountPrice < sub.price) {
-              <s class="price-full">{{ sub.price | number: '1.0-0' }}&nbsp;₽</s>
+              <s class="price-full">{{ sub.price | currency: 'USD' : 'symbol' : '1.0-0' }}</s>
             }
           </p>
 
           <div class="payment">
             <div class="payment-row">
-              <span>Paid {{ sub.paid | number: '1.0-0' }}&nbsp;₽</span>
+              <span>Paid {{ sub.paid | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
               @if (sub.toPay > 0) {
-                <span class="to-pay">Due {{ sub.toPay | number: '1.0-0' }}&nbsp;₽</span>
+                <span class="to-pay">Due {{ sub.toPay | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
               } @else {
                 <span class="paid">Fully paid</span>
               }

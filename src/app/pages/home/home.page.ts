@@ -1,4 +1,4 @@
-import { DecimalPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TuiButton, TuiIcon, TuiTitle } from '@taiga-ui/core';
@@ -22,7 +22,7 @@ interface MenuItem {
 @Component({
   selector: 'app-home-page',
   imports: [
-    DecimalPipe,
+    CurrencyPipe,
     RouterLink,
     TuiBadge,
     TuiButton,
@@ -45,7 +45,7 @@ export class HomePage {
 
   protected readonly club = computed(() => this.store.client()?.club ?? null);
 
-  /** Amount left to spend to reach the next level, ₽. */
+  /** Amount left to spend to reach the next level, USD. */
   protected readonly toNextLevel = computed(() => {
     const club = this.club();
     return club?.nextLevel ? Math.max(club.nextLevel.threshold - club.spent, 0) : 0;

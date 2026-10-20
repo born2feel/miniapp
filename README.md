@@ -161,7 +161,7 @@ BOT_TOKEN=<token> npm start   # demo endpoint POST /api/client/profile on :3000
 4. Open the bot and tap the mini app button. The app sees a non-empty `initData` and switches to `TelegramPlatform`. The Back button, theme and contact request become native.
 5. Replace the `bookingUsername`, `careUsername` and `onlineBookingUrl` placeholders in `src/app/core/salon.config.ts` with real values.
 
-> There is no backend on GitHub Pages, so after `requestContact` the profile still comes from the mocks. To see a profile in Telegram, the number must match one of the test numbers (`+79990000001`, `+79990000002`). Otherwise you get a "client not found" message — which is part of the demo too.
+> There is no backend on GitHub Pages, so after `requestContact` the profile still comes from the mocks. To see a profile in Telegram, the number must match one of the test numbers (`+1 555 010-0001`, `+1 555 010-0002`). Otherwise you get a "client not found" message — which is part of the demo too.
 
 ## Deploying to GitHub Pages
 
