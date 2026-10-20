@@ -28,7 +28,10 @@
 
 .frozen {
   flex-shrink: 0;
-  gap: 0.25rem;
+
+  tui-icon {
+    margin-inline-end: 0.25rem;
+  }
 }
 
 .price {

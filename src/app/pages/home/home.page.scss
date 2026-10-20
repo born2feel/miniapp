@@ -22,7 +22,10 @@
 
 .level {
   flex-shrink: 0;
-  gap: 0.25rem;
+
+  tui-icon {
+    margin-inline-end: 0.25rem;
+  }
 
   &[data-level='silver'] {
     background: #c9ced6;
