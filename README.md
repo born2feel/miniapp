@@ -19,8 +19,6 @@ All data is mocked. Names, phone numbers, addresses and amounts are fictional.
 | --- | --- | --- |
 | ![Packages](docs/screenshots/subscriptions.png) | ![Bonus cards](docs/screenshots/cards.png) | ![Dark theme](docs/screenshots/home-dark.png) |
 
-> Images go into `docs/screenshots/` under these names.
-
 ## Features
 
 - **Phone sign-in** via the messenger's native contact request (`requestContact`).
