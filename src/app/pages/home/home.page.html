@@ -1,0 +1,95 @@
+@switch (store.status()) {
+  @case ('error') {
+    <app-error-state />
+  }
+  @case ('ready') {
+    @if (store.client(); as client) {
+      @if (club(); as club) {
+        <section class="status app-card" aria-label="Club status">
+          <div class="status-top">
+            <div>
+              <p class="greeting">{{ client.firstName }} {{ client.lastName }}</p>
+              <p class="app-muted phone">{{ client.phone | phone }}</p>
+            </div>
+            <span tuiBadge size="l" class="level" [attr.data-level]="club.level">
+              <tui-icon icon="@tui.crown" />
+              {{ club.levelName }}
+            </span>
+          </div>
+
+          <div class="discount">
+            <span class="discount-value">{{ club.discountPercent }}%</span>
+            <span class="app-muted">discount on all services</span>
+          </div>
+
+          @if (club.nextLevel; as next) {
+            <progress
+              tuiProgressBar
+              size="s"
+              class="progress"
+              [max]="next.threshold"
+              [value]="club.spent"
+              [attr.aria-label]="'Progress to ' + next.name"
+            ></progress>
+            <p class="app-muted">
+              {{ toNextLevel() | number: '1.0-0' }}&nbsp;₽ left to reach {{ next.name }}
+              ({{ next.discountPercent }}%)
+            </p>
+          } @else {
+            <p class="app-muted">You are at the top club level</p>
+          }
+        </section>
+      }
+
+      <section class="actions">
+        <button tuiButton type="button" size="l" iconStart="@tui.calendar-check" (click)="book()">
+          Book a treatment
+        </button>
+        <button
+          tuiButton
+          type="button"
+          size="l"
+          appearance="secondary"
+          iconStart="@tui.message-circle"
+          (click)="contactCare()"
+        >
+          Contact customer care
+        </button>
+        <button
+          tuiButton
+          type="button"
+          size="l"
+          appearance="secondary"
+          iconStart="@tui.external-link"
+          (click)="openOnlineBooking()"
+        >
+          Online booking
+        </button>
+      </section>
+
+      <nav class="menu app-card" aria-label="Account sections">
+        @for (item of menu(); track item.link) {
+          <a tuiCell class="menu-item" [routerLink]="item.link">
+            <tui-icon class="menu-icon" [icon]="item.icon" />
+            <span tuiTitle>
+              {{ item.title }}
+              <span tuiSubtitle>{{ item.hint }}</span>
+            </span>
+            <tui-icon icon="@tui.chevron-right" class="chevron" />
+          </a>
+        }
+      </nav>
+
+      <button tuiButton type="button" appearance="flat" size="s" class="sign-out" (click)="signOut()">
+        Change number
+      </button>
+    }
+  }
+  @default {
+    <app-skeleton-list [count]="1" [height]="176" />
+    <div class="skeleton-gap"></div>
+    <app-skeleton-list [count]="3" [height]="48" />
+    <div class="skeleton-gap"></div>
+    <app-skeleton-list [count]="1" [height]="300" />
+  }
+}

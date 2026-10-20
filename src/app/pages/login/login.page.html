@@ -1,0 +1,50 @@
+<section class="login">
+  <div class="logo" aria-hidden="true">
+    <tui-icon icon="@tui.sparkles" />
+  </div>
+  <h1 class="title">{{ salonName }} Club</h1>
+  <p class="text">
+    Your client account: club status, bonuses, bookings, packages and visit history.
+  </p>
+
+  <button
+    tuiButton
+    type="button"
+    size="l"
+    class="submit"
+    iconStart="@tui.phone"
+    [loading]="requesting()"
+    (click)="signIn()"
+  >
+    Sign in with phone number
+  </button>
+
+  @if (declined()) {
+    <p class="hint hint_error" role="alert">
+      Without your phone number we cannot find your client card. Tap the button again and
+      allow access to your contact.
+    </p>
+  } @else if (!demo) {
+    <p class="hint">The messenger will ask you to confirm sharing your number with the salon.</p>
+  }
+
+  @if (demo) {
+    <div class="demo">
+      <p class="demo-title">Demo mode: pick a test number</p>
+      <div class="demo-chips">
+        @for (item of demoPhones; track item.phone) {
+          <button
+            tuiChip
+            type="button"
+            size="s"
+            [appearance]="demo.demoPhone() === item.phone ? 'primary' : 'neutral'"
+            (click)="demo.demoPhone.set(item.phone)"
+          >
+            {{ item.title }}
+          </button>
+        }
+      </div>
+      <p class="demo-phone">{{ demo.demoPhone() | phone }}</p>
+    </div>
+  }
+</section>

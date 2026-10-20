@@ -1,0 +1,71 @@
+<app-page-header title="Packages" subtitle="Payments and remaining treatments" />
+
+@switch (store.status()) {
+  @case ('error') {
+    <app-error-state />
+  }
+  @case ('ready') {
+    <ul class="app-stack list">
+      @for (sub of subscriptions(); track sub.id) {
+        <li class="app-card subscription" [class.subscription_frozen]="sub.frozen">
+          <div class="head">
+            <h2 class="title">{{ sub.title }}</h2>
+            @if (sub.frozen) {
+              <span tuiBadge appearance="info" size="m" class="frozen">
+                <tui-icon icon="@tui.snowflake" />
+                Frozen
+              </span>
+            }
+          </div>
+
+          <p class="price">
+            <span class="price-discount">{{ sub.discountPrice | number: '1.0-0' }}&nbsp;₽</span>
+            @if (sub.discountPrice < sub.price) {
+              <s class="price-full">{{ sub.price | number: '1.0-0' }}&nbsp;₽</s>
+            }
+          </p>
+
+          <div class="payment">
+            <div class="payment-row">
+              <span>Paid {{ sub.paid | number: '1.0-0' }}&nbsp;₽</span>
+              @if (sub.toPay > 0) {
+                <span class="to-pay">Due {{ sub.toPay | number: '1.0-0' }}&nbsp;₽</span>
+              } @else {
+                <span class="paid">Fully paid</span>
+              }
+            </div>
+            <progress
+              tuiProgressBar
+              size="s"
+              [max]="sub.discountPrice"
+              [value]="sub.paid"
+              aria-label="Package payment"
+            ></progress>
+          </div>
+
+          <ul class="services">
+            @for (service of sub.services; track service.name) {
+              <li class="service">
+                <span>{{ service.name }}</span>
+                <span class="service-left">
+                  {{ service.total - service.used }} of {{ service.total }} left
+                </span>
+              </li>
+            }
+          </ul>
+
+          <p class="app-muted valid">Valid until {{ sub.validUntil | date: 'MMMM d, yyyy' }}</p>
+        </li>
+      } @empty {
+        <li>
+          <app-empty-state icon="@tui.ticket" title="No packages">
+            A package costs less than single visits — ask customer care about it.
+          </app-empty-state>
+        </li>
+      }
+    </ul>
+  }
+  @default {
+    <app-skeleton-list [count]="2" [height]="260" />
+  }
+}

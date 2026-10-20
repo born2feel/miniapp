@@ -1,0 +1,98 @@
+.status {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.status-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.greeting {
+  margin: 0;
+  font: var(--tui-font-heading-6);
+}
+
+.phone {
+  margin: 0.25rem 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.level {
+  flex-shrink: 0;
+  gap: 0.25rem;
+
+  &[data-level='silver'] {
+    background: #c9ced6;
+    color: #2b2f36;
+  }
+
+  &[data-level='gold'] {
+    background: #f4c95d;
+    color: #3d2c00;
+  }
+
+  &[data-level='platinum'] {
+    background: #a7b4ff;
+    color: #1d2459;
+  }
+}
+
+.discount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.discount-value {
+  font: var(--tui-font-heading-3);
+  color: var(--tui-text-action);
+}
+
+.progress {
+  width: 100%;
+}
+
+.app-muted {
+  margin: 0;
+}
+
+.actions {
+  display: grid;
+  gap: 0.5rem;
+  margin-block: 1rem;
+
+  button {
+    width: 100%;
+  }
+}
+
+.menu {
+  padding: 0.25rem 0;
+}
+
+.menu-item {
+  padding-inline: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-icon {
+  color: var(--tui-text-action);
+}
+
+.chevron {
+  margin-inline-start: auto;
+  color: var(--tui-text-tertiary);
+}
+
+.sign-out {
+  display: flex;
+  margin: 1rem auto 0;
+}
+
+.skeleton-gap {
+  height: 1rem;
+}

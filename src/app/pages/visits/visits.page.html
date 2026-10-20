@@ -1,0 +1,72 @@
+<app-page-header title="Visits" subtitle="Tell us how it went" />
+
+@switch (store.status()) {
+  @case ('error') {
+    <app-error-state />
+  }
+  @case ('ready') {
+    @if (total()) {
+      <ul class="app-stack list">
+        @for (visit of visits(); track visit.id) {
+          <li class="app-card visit">
+            <div class="head">
+              <time class="date" [attr.datetime]="visit.datetime">
+                {{ visit.datetime | date: 'MMMM d, yyyy, HH:mm' }}
+              </time>
+              @if (visit.status === 'cancelled') {
+                <span tuiBadge appearance="neutral" size="s">Cancelled</span>
+              } @else {
+                <span class="price">{{ visit.price | number: '1.0-0' }}&nbsp;₽</span>
+              }
+            </div>
+            <p class="category">{{ visit.category }}</p>
+            <p class="app-muted line">{{ visit.services.join(' · ') }}</p>
+            <p class="app-muted line">{{ visit.master.name }} · {{ visit.branch.name }}</p>
+
+            @if (visit.status === 'completed') {
+              <div class="rating">
+                <tui-rating
+                  class="stars"
+                  [ngModel]="ratingOf(visit)"
+                  (ngModelChange)="rate(visit, $event)"
+                  [attr.aria-label]="'Rate the visit on ' + (visit.datetime | date: 'MMMM d')"
+                />
+                @if (ratingOf(visit) === 5) {
+                  @if (reviewLink(visit); as url) {
+                    <button
+                      tuiButton
+                      type="button"
+                      appearance="flat"
+                      size="s"
+                      iconEnd="@tui.external-link"
+                      class="review"
+                      (click)="openReview(url)"
+                    >
+                      Leave a review on maps
+                    </button>
+                  }
+                } @else if (!ratingOf(visit)) {
+                  <span class="app-muted">Tap a star to rate</span>
+                }
+              </div>
+            }
+          </li>
+        }
+      </ul>
+
+      @if (hasMore()) {
+        <button tuiButton type="button" appearance="secondary" size="m" class="more" (click)="showMore()">
+          Show more
+        </button>
+      }
+      <p class="app-muted counter">Showing {{ visits().length }} of {{ total() }}</p>
+    } @else {
+      <app-empty-state icon="@tui.history" title="No visits yet">
+        Your salon visit history will appear here.
+      </app-empty-state>
+    }
+  }
+  @default {
+    <app-skeleton-list [count]="5" [height]="150" />
+  }
+}

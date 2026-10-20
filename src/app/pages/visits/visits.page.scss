@@ -1,0 +1,65 @@
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visit {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.date {
+  font: var(--tui-font-text-s);
+  color: var(--tui-text-secondary);
+}
+
+.price {
+  font: var(--tui-font-text-m);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.category {
+  margin: 0.25rem 0 0;
+  font: var(--tui-font-text-m);
+  font-weight: 600;
+}
+
+.line {
+  margin: 0;
+}
+
+.rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  margin-block-start: 0.5rem;
+}
+
+.stars {
+  font-size: 0.875rem;
+  color: var(--tui-status-warning);
+}
+
+.review {
+  margin-inline-start: -0.5rem;
+}
+
+.more {
+  width: 100%;
+  margin-block-start: 1rem;
+}
+
+.counter {
+  margin: 0.75rem 0 0;
+  text-align: center;
+}

@@ -1,0 +1,24 @@
+<tui-root [attr.tuiTheme]="theme.scheme()" [style]="theme.cssVars()">
+  <div class="app">
+    @if (demo) {
+      <div class="demo-bar">
+        @if (backHandler(); as back) {
+          <button
+            tuiButton
+            type="button"
+            appearance="flat"
+            size="s"
+            iconStart="@tui.chevron-left"
+            (click)="back()"
+          >
+            Back
+          </button>
+        }
+        <span tuiBadge appearance="accent" size="m" class="demo-badge">{{ demo.label }}</span>
+      </div>
+    }
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</tui-root>
